@@ -1,9 +1,15 @@
 from django.shortcuts import render
-from django.core.files.storage import FileSystemStorage
+from .models import PostModel, Category
 
 
 def image_upload(request):
-    return render(request, "index.html")
+    post_content = PostModel.objects.all()
+
+    context = {
+        'products': post_content,
+    }
+
+    return render(request, "index.html", context)
 
 
 def about_views(request):
